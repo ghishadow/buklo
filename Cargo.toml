@@ -1,23 +1,21 @@
 [package]
 name = "buklo"
 version = "0.1.0"
-edition = "2021"
+description = "Buklo is a simple CLI HTTP client"
 keywords = ["cli"]
 license = "MIT"
-description = "Buklo is a simple HTTP client"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+repository = "https://github.com/ghishadow/bulko"
+edition = "2021"
 
 [badges]
 maintenance = { status = "actively-developed" }
 
 [dependencies]
-ureq = { version = "*", features = ["json", "charset"] }
+
+ureq = { version = "2.4.0", features = ["json", "charset"] }
 clap = { version = "3.0.14", features = ["derive"] }
 update-informer = "0.2.0"
 colored = "2"
-anyhow = "1.0"
-thiserror = "1.0.30"
 
 [profile.dev]
 opt-level = 0
