@@ -2,15 +2,22 @@
 name = "buklo"
 version = "0.1.0"
 edition = "2021"
+keywords = ["cli"]
+license = "MIT"
 description = "Buklo is a simple HTTP client"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[badges]
+maintenance = { status = "actively-developed" }
 
 [dependencies]
 ureq = { version = "*", features = ["json", "charset"] }
 clap = { version = "3.0.14", features = ["derive"] }
 update-informer = "0.2.0"
 colored = "2"
+anyhow = "1.0"
+thiserror = "1.0.30"
 
 [profile.dev]
 opt-level = 0
@@ -22,3 +29,7 @@ panic = 'unwind'
 incremental = true
 codegen-units = 256
 rpath = false
+
+[profile.release]
+codegen-units = 1
+lto = true
