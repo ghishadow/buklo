@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Buklo is a simple CLI HTTP client"
 keywords = ["cli"]
 license = "MIT"
+readme = "README.md"
 repository = "https://github.com/ghishadow/bulko"
+documentation = "https://docs.rs/crate/buklo"
 edition = "2021"
 
 [badges]
@@ -12,10 +14,13 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 
-ureq = { version = "2.4.0", features = ["json", "charset"] }
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
 clap = { version = "3.0.14", features = ["derive"] }
 update-informer = "0.2.0"
 colored = "2"
+log = "0.4.14"
+url = "2.2.2"
 
 [profile.dev]
 opt-level = 0
@@ -31,3 +36,4 @@ rpath = false
 [profile.release]
 codegen-units = 1
 lto = true
+
