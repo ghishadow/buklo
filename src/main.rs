@@ -9,9 +9,9 @@ mod version;
 use crate::version::check_version;
 use clap::Parser;
 use colored::*;
-
 use std::collections::HashMap;
-
+use ureq::Error;
+use ureq::{Agent, AgentBuilder};
 struct Bulko {
     url: String,
 }
@@ -20,13 +20,10 @@ impl Bulko {
     fn new(url: String) -> Bulko {
         Bulko { url }
     }
-    #[tokio::main]
-    async fn get(&self) -> Result<(), Box<dyn std::error::Error>> {
+    fn get(&self) -> Result<(), ureq::Error> {
+        let agent: Agent = AgentBuilder::new().build();
         let url = self.url.clone();
-        let res = reqwest::get(&url)
-            .await?
-            .json::<HashMap<String, String>>()
-            .await?;
+        let res = agent.get(&url).call()?.into_string()?;
         println!("{:#?}", res);
         Ok(())
     }

@@ -2,10 +2,7 @@ use colored::*;
 use std::time::Duration;
 use update_informer::{registry::Crates, Check, UpdateInformer};
 
-
-
-
-
+// TODO implement github release check
 pub fn check_version() {
     let pkg_name = env!("CARGO_PKG_NAME");
     let current_version = env!("CARGO_PKG_VERSION");
@@ -22,3 +19,4 @@ pub fn check_version() {
         println!("\n{msg}", msg = msg);
     }
 }
+
