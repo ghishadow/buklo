@@ -54,14 +54,14 @@ jobs:
         if: runner.os != 'Windows'
         run: >
           tar -cv
-          LICENSE README.md
+          LICENSE.md README.md
           -C target/${{ matrix.target }}/release/ bulko
           | gzip --best > '${{ env.ARTIFACT_NAME }}.tar.gz'
       - name: Package (Windows)
         if: runner.os == 'Windows'
         run: >
           7z a ${{ env.ARTIFACT_NAME }}.zip
-          LICENSE README.md
+          LICENSE.md README.md
           ./target/${{ matrix.target }}/release/bulko.exe
       - name: Upload artifact
         uses: actions/upload-artifact@v2
