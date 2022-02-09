@@ -5,7 +5,7 @@ description = "Buklo is a simple CLI HTTP client"
 keywords = ["cli"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/ghishadow/bulko"
+repository = "https://github.com/ghishadow/buklo"
 documentation = "https://docs.rs/crate/buklo"
 edition = "2021"
 

@@ -11,3 +11,5 @@
     $ buklo  --url [url --method [method] 
 
 ```
+
+[crates.io-badge]: https://img.shields.io/crates/v/buklo?style=flat-square
