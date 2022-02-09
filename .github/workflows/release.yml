@@ -1,0 +1,80 @@
+name: release
+on:
+  push:
+    branches: [main]
+    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: arm-unknown-linux-musleabihf
+          - os: ubuntu-latest
+            target: armv7-unknown-linux-musleabihf
+
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set artifact name
+        shell: bash
+        run: |
+          version="$(git describe --tags --match='v*.*.*' --always)"
+          name="bulko-$version-${{ matrix.target }}"
+          echo "ARTIFACT_NAME=$name" >> $GITHUB_ENV
+          echo "version: $version"
+          echo "artifact: $name"
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+          target: ${{ matrix.target }}
+
+      - name: Build binary
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --locked --target=${{ matrix.target }} --color=always --verbose
+          use-cross: ${{ runner.os == 'Linux' }}
+
+      - name: Package (*nix)
+        if: runner.os != 'Windows'
+        run: >
+          tar -cv
+          LICENSE README.md
+          -C target/${{ matrix.target }}/release/ bulko
+          | gzip --best > '${{ env.ARTIFACT_NAME }}.tar.gz'
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        run: >
+          7z a ${{ env.ARTIFACT_NAME }}.zip
+          LICENSE README.md
+          ./target/${{ matrix.target }}/release/bulko.exe
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.target }}
+          path: |
+            *.zip
+            *.tar.gz
+      - name: Create release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: |
+            *.zip
+            *.tar.gz
