@@ -1,6 +1,6 @@
 
 {
-	"name": "Bulko",
+	"name": "Buklo",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": {

@@ -55,14 +55,14 @@ jobs:
         run: >
           tar -cv
           LICENSE.md README.md
-          -C target/${{ matrix.target }}/release/ bulko
+          -C target/${{ matrix.target }}/release/ buklo
           | gzip --best > '${{ env.ARTIFACT_NAME }}.tar.gz'
       - name: Package (Windows)
         if: runner.os == 'Windows'
         run: >
           7z a ${{ env.ARTIFACT_NAME }}.zip
           LICENSE.md README.md
-          ./target/${{ matrix.target }}/release/bulko.exe
+          ./target/${{ matrix.target }}/release/buklo.exe
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
