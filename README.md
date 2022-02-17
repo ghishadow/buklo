@@ -22,7 +22,7 @@
 
 [crates-badge]: https://img.shields.io/crates/v/buklo.svg
 [crates-url]: https://crates.io/crates/buklo
-[actions-badge]: https://github.com/ghishadow/buklo/workflows/ci/badge.svg
+[actions-badge]: https://github.com/ghishadow/buklo/workflows/release/badge.svg
 [actions-url]: https://github.com/ghishadow/buklo/actions/workflows/release.yml?query=branch%3Amain
 [docs-badge]: https://img.shields.io/docsrs/buklo.svg
 [docs-url]: https://docs.rs/buklo
