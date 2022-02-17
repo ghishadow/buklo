@@ -2,7 +2,7 @@ use clap::Parser;
 use std::error;
 use std::fmt;
 use std::io;
-use ureq;
+
 
 #[derive(Debug)]
 struct StringError(String);
