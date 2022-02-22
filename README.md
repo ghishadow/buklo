@@ -3,7 +3,7 @@
 
 
 [![Crates.io][crates-badge]][crates-url]
-[![docs.rs][docs-badge]][docs-url]
+[![Rust Report Card](https://rust-reportcard.xuri.me/badge/github.com/ghishadow/bulko)](https://rust-reportcard.xuri.me/report/github.com/ghishadow/bulko)
 [![Dependencies][dependencies-badge]][dependencies-url]
 [![Build Status][actions-badge]][actions-url]
 
