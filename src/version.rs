@@ -1,4 +1,4 @@
-use colored::*;
+use owo_colors::OwoColorize;
 use std::time::Duration;
 use update_informer::{registry::Crates, Check, UpdateInformer};
 

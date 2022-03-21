@@ -14,10 +14,10 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 ureq = { version = "2.4.0", features = ["json", "charset"] }
-clap = { version = "3.1.1", features = ["derive", "cargo", "env", "unicode", "wrap_help"] }
+clap = { version = "3.1.6", features = ["derive", "cargo", "env", "unicode", "wrap_help"] }
 
-update-informer = "0.4.0"
-colored = "2"
+update-informer = "0.4.0" 
+owo-colors = "3"
 log = "0.4.14"
 url = "2.2.2"
 
