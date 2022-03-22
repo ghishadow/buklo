@@ -2,7 +2,8 @@ use clap::Parser;
 use std::error;
 use std::fmt;
 use std::io;
-
+mod version;
+use crate::version::check_version;
 
 #[derive(Debug)]
 struct StringError(String);
@@ -102,6 +103,7 @@ struct Args {
 }
 
 fn main() {
+    check_version();
     match start() {
         Ok(()) => {}
         Err(e) => {
