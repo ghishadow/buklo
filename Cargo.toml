@@ -1,6 +1,6 @@
 [package]
 name = "buklo"
-version = "0.1.6"
+version = "0.1.7"
 description = "Buklo is a simple CLI HTTP client"
 keywords = ["cli"]
 license = "MIT"
@@ -8,17 +8,18 @@ readme = "README.md"
 repository = "https://github.com/ghishadow/buklo"
 documentation = "https://docs.rs/crate/buklo"
 edition = "2021"
+rust-version = "1.59"
 
 [badges]
 maintenance = { status = "actively-developed" }
 
 [dependencies]
 ureq = { version = "2.4.0", features = ["json", "charset"] }
-clap = { version = "3.1.6", features = ["derive", "cargo", "env", "unicode", "wrap_help"] }
+clap = { version = "3.1.8", features = ["derive", "cargo", "env", "unicode", "wrap_help"] }
 
-update-informer = "0.4.0" 
-owo-colors = "3"
-log = "0.4.14"
+update-informer = "0.5.0" 
+owo-colors = "3.3.0"
+log = "0.4.16"
 url = "2.2.2"
 
 [profile.dev]
@@ -35,3 +36,5 @@ rpath = false
 [profile.release]
 codegen-units = 1
 lto = true
+opt-level = "s" # Optimize for size
+strip = "debuginfo"
