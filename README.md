@@ -17,6 +17,10 @@
 
 ```
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/486793.svg)](https://asciinema.org/a/486793)
+
 
 [crates.io-badge]: https://img.shields.io/crates/v/buklo?style=flat-square
 
