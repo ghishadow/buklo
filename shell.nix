@@ -5,9 +5,9 @@ with pkgs;
 mkShell {
   buildInputs = [
     # Rust
-    pkgs.cargo
-    pkgs.rustc
-
+    #pkgs.cargo
+    #pkgs.rustc
+    pkgs.rustup
     # Shells
     pkgs.zsh
 
