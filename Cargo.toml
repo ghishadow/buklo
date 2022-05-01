@@ -1,6 +1,6 @@
 [package]
 name = "buklo"
-version = "0.1.7"
+version = "0.1.8"
 description = "Buklo is a simple CLI HTTP client"
 keywords = ["cli"]
 license = "MIT"
@@ -15,10 +15,10 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 ureq = { version = "2.4.0", features = ["json", "charset"] }
-clap = { version = "3.1.8", features = ["derive", "cargo", "env", "unicode", "wrap_help"] }
+clap = { version = "3.1.12", features = ["derive", "cargo", "env", "unicode", "wrap_help"] }
 
 update-informer = "0.5.0" 
-owo-colors = "3.3.0"
+owo-colors = "3.4.0"
 log = "0.4.16"
 url = "2.2.2"
 
