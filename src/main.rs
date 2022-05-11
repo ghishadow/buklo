@@ -5,6 +5,8 @@ use std::io;
 mod version;
 use crate::version::check_version;
 
+#[macro_use]
+extern crate log;
 #[derive(Debug)]
 struct StringError(String);
 
@@ -103,6 +105,8 @@ struct Args {
 }
 
 fn main() {
+    env_logger::init();
+    info!("Starting up Buklo");
     check_version();
     match start() {
         Ok(()) => {}
