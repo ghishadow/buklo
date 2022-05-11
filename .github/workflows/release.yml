@@ -62,7 +62,7 @@ jobs:
           LICENSE.md README.md
           ./target/${{ matrix.target }}/release/buklo.exe
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.target }}
           path: |
