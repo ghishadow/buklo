@@ -1,9 +1,9 @@
-# Bulko
- Buklo is a simple CLI HTTP client
+# Buklo
+ Buklo is a simple command line interface for HTTP client
 
 
 [![Crates.io][crates-badge]][crates-url]
-[![Rust Report Card](https://rust-reportcard.xuri.me/badge/github.com/ghishadow/bulko)](https://rust-reportcard.xuri.me/report/github.com/ghishadow/bulko)
+[![Rust Report Card](https://rust-reportcard.xuri.me/badge/github.com/ghishadow/buklo)](https://rust-reportcard.xuri.me/report/github.com/ghishadow/buklo)
 [![Dependencies][dependencies-badge]][dependencies-url]
 [![Build Status][actions-badge]][actions-url]
 

@@ -21,6 +21,10 @@ build:
 fmt:
   cargo fmt --all
 
+
+spellcheck:
+  cargo spellcheck check
+
 # add git log messages to changelog
 changes:
   git log --pretty=format:%s >> CHANGELOG.md

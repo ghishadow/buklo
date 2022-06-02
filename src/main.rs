@@ -69,7 +69,7 @@ fn request(
     print_headers: bool,
 ) -> Result<(), Error> {
     let req = agent.request(method, url);
-    let response = if method == "GET" && data.len() == 0 {
+    let response = if method == "GET" && data.is_empty() {
         req.call()?
     } else {
         req.send_bytes(data)?
