@@ -41,3 +41,4 @@ codegen-units = 1
 lto = true
 opt-level = "s" # Optimize for size
 strip = "debuginfo"
+panic = "abort"

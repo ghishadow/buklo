@@ -18,6 +18,12 @@ run:
 build:
   cargo build
 
+release:
+  cargo build --release
+
+build-linux:
+  cargo +nightly build -Z build-std=std,panic_abort  --target x86_64-unknown-linux-gnu --release
+
 fmt:
   cargo fmt --all
 
