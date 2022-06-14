@@ -15,7 +15,7 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 ureq = { version = "2.4.0", features = ["json", "charset"] }
-clap = { version = "3.1.18", features = ["derive", "cargo", "env", "unicode", "wrap_help"] }
+clap = { version = "3.2.2", features = ["derive", "cargo", "env", "unicode", "wrap_help"] }
 anyhow = "1.0.57"
 serde = "1.0.137"
 update-informer = "0.5.0" 
