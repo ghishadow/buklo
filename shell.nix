@@ -1,4 +1,11 @@
-{pkgs ? import <nixpkgs> {}}:
+{
+  pkgs ?
+    import <nixpkgs> {
+      crossSystem = {
+        config = "aarch64-unknown-linux-gnu";
+      };
+    },
+}:
 with pkgs;
   mkShell {
     buildInputs = [
@@ -9,6 +16,8 @@ with pkgs;
       # Shells
       pkgs.zsh
 
+      # to test github actions
+      pkgs.act
       # Tools
       pkgs.docker
       pkgs.cargo-audit
