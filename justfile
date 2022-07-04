@@ -1,4 +1,7 @@
-
+set shell := ["nu", "-c"]
+# use this if don't have nushell installed
+# set shell := ["powershell.exe", "-c"]
+# set shell := ["zsh", "-uc"]
 
 bt := '0'
 
@@ -17,6 +20,9 @@ run:
 
 build:
   cargo build
+
+timings:
+  cargo build --timings
 
 release:
   cargo build --release
@@ -48,6 +54,7 @@ install-dev-deps:
   cargo install cargo-check
   cargo install cargo-limit
   cargo install cargo-watch
+  npm install -g @commitlint/cli @commitlint/config-conventional
 
 
 # count non-empty lines of code
