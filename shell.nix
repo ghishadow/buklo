@@ -27,6 +27,8 @@ with pkgs;
       pkgs.cacert
       pkgs.openssl
       pkgs.git
+      pkgs.git-lfs
+      pkgs.mosh
       pkgs.zlib
       pkgs.pkg-config
     ];

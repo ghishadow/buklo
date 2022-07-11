@@ -104,9 +104,10 @@ struct Args {
     body: Option<String>,
 }
 
-fn main() {
+fn main()  {
     env_logger::init();
     info!("Starting up Buklo");
+    info!("Checking for updates");
     check_version();
     match start() {
         Ok(()) => {}

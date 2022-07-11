@@ -1,26 +1,23 @@
 # Buklo
- Buklo is a simple command line interface for HTTP client
 
+ Buklo is a simple command line interface for HTTP client
 
 [![Crates.io][crates-badge]][crates-url]
 [![Rust Report Card](https://rust-reportcard.xuri.me/badge/github.com/ghishadow/buklo)](https://rust-reportcard.xuri.me/report/github.com/ghishadow/buklo)
 [![Dependencies][dependencies-badge]][dependencies-url]
 [![Build Status][actions-badge]][actions-url]
 
-
-
- ## Getting Started
+## Getting Started
 
  ``` shell
 
-    $ buklo  --url [url] --method [method] --body [body] --headers [headers]
+    buklo  --url [url] --method [method] --body [body] --headers [headers]
 
 ```
 
 ## Demo
 
 [![asciicast](https://asciinema.org/a/486793.svg)](https://asciinema.org/a/486793?theme=monokai?row=30)
-
 
 [crates.io-badge]: https://img.shields.io/crates/v/buklo?style=flat-square
 
