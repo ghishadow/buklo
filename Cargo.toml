@@ -15,7 +15,7 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 ureq = { version = "2.5.0", features = ["json", "socks-proxy", "native-certs"] }
-clap = { version = "3.2.10", features = ["derive", "cargo", "color", "env", "unicode", "wrap_help"] } 
+clap = { version = "3.2.11", features = ["derive", "cargo", "color", "env", "unicode", "wrap_help"] } 
 serde = "1.0.139"
 update-informer = "0.5.0" 
 owo-colors = "3.4.0"
