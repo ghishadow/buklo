@@ -1,40 +1,80 @@
-name: build
+name: Release
 
 on:
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name for release'
+        required: false
+        default: nightly
   push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+*"]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CARGO_TERM_COLOR: always
 
 jobs:
-  build_windows:
-    runs-on: windows-latest
+  linux:
+    runs-on: ubuntu-20.04
 
     steps:
-    - name: Checkout Sources
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential
+      - name: Update rust
+        run: rustup update
+      - name: Build
+        run: cargo build --release
+      - name: Gzip
+        run: |
+          mkdir buklo
+          cp ./target/release-lto/buklo buklo/
+          tar -zcvf ./buklo-linux.tar.gz buklo
+          gzip -c "./target/release-lto/buklo-proxy" > ./buklo-proxy-linux.gz
+      - uses: actions/upload-artifact@v3
+        with:
+          name: buklo-linux
+          path: |
+            ./buklo-linux.tar.gz
+            ./buklo-proxy-linux.gz
+          retention-days: 1
+          
+  publish:
+    needs: [linux]
+    runs-on: ubuntu-20.04
+    env:
+      GH_REPO: ${{ github.repository }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
 
-    - name: Update Rust
-      run: rustup update
-
-    - name: Build Buklo
-      run: cargo build --release
-
-    - name: Create Latest Release
-      id: create_release
-      uses: marvinpinto/action-automatic-releases@latest
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        automatic_release_tag: "latest"
-        prerelease: true
-        title: Latest Build
-
-    - name: Upload Binary
-      id: upload_release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./target/release/buklo.exe
-        asset_name: buklo.exe
-        asset_content_type: application/vnd.microsoft.portable-executable
+      - uses: actions/download-artifact@v3          
+      
+      - if: github.event_name == 'workflow_dispatch'
+        run: echo "TAG_NAME=${{ github.event.inputs.tag_name }}" >> $GITHUB_ENV
+      - if: github.event_name == 'schedule'
+        run: echo 'TAG_NAME=nightly' >> $GITHUB_ENV
+      - if: github.event_name == 'push'
+        run: |
+          TAG_NAME=${{ github.ref }}
+          echo "TAG_NAME=${TAG_NAME#refs/tags/}" >> $GITHUB_ENV
+      - if: env.TAG_NAME == 'nightly'
+        run: |
+          (echo 'SUBJECT=buklo development build';
+           echo 'PRERELEASE=--prerelease') >> $GITHUB_ENV
+          gh release delete nightly --yes || true
+          git push origin :nightly || true
+      - if: env.TAG_NAME != 'nightly'
+        run: |
+          (echo 'SUBJECT=buklo release build';
+           echo 'PRERELEASE=') >> $GITHUB_ENV
+      - name: Publish release
+        run: |
+          gh release create $TAG_NAME $PRERELEASE --title "$TAG_NAME" --target $GITHUB_SHA buklo-linux/*

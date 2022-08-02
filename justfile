@@ -11,6 +11,10 @@ log := "warn"
 
 export JUST_LOG := log
 
+
+default:
+  @just --list
+
 # create a nix shell with all tools needed for development
 shell:
    nix develop .  --command "zsh"
@@ -20,6 +24,12 @@ run:
 
 build:
   cargo build
+
+release-build-apple:
+  cargo +nightly build -Z build-std=std,panic_abort -Z build-std-features=panic_immediate_abort --target aarch64-apple-darwin --release
+
+compress-build:
+  upx --best --lzma target/aarch64-apple-darwin/release/buklo
 
 timings:
   cargo build --timings
