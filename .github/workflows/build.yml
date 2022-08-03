@@ -33,9 +33,9 @@ jobs:
       - name: Gzip
         run: |
           mkdir buklo
-          cp ./target/release-lto/buklo buklo/
+          cp ./target/release/buklo buklo/
           tar -zcvf ./buklo-linux.tar.gz buklo
-          gzip -c "./target/release-lto/buklo-proxy" > ./buklo-proxy-linux.gz
+          gzip -c "./target/release/buklo-proxy" > ./buklo-proxy-linux.gz
       - uses: actions/upload-artifact@v3
         with:
           name: buklo-linux
