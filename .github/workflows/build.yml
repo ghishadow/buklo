@@ -35,13 +35,11 @@ jobs:
           mkdir buklo
           cp ./target/release/buklo buklo/
           tar -zcvf ./buklo-linux.tar.gz buklo
-          gzip -c "./target/release/buklo-proxy" > ./buklo-proxy-linux.gz
       - uses: actions/upload-artifact@v3
         with:
           name: buklo-linux
           path: |
             ./buklo-linux.tar.gz
-            ./buklo-proxy-linux.gz
           retention-days: 1
           
   publish:
