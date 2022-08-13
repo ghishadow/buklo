@@ -18,16 +18,21 @@ env:
 
 jobs:
   linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Mold
+      - uses: rui314/setup-mold@v1
+        with:
+          mold-version: 1.4.0
+          make-default: false
+      - name: Setup Rust toolchain
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install build-essential
-      - name: Update rust
-        run: rustup update
       - name: Build
         run: cargo build --release
       - name: Gzip
