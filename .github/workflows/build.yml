@@ -22,7 +22,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Mold
       - uses: rui314/setup-mold@v1
         with:
           mold-version: 1.4.0
