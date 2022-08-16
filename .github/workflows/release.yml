@@ -25,7 +25,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup Mold
-      - uses: rui314/setup-mold@v1
+        uses: rui314/setup-mold@v1
         with:
           mold-version: 1.4.0
           make-default: false
