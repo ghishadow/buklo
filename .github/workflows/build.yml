@@ -11,24 +11,35 @@ on:
         default: nightly
   push:
     tags: ["v[0-9]+.[0-9]+.[0-9]+*"]
+  release:
+    types: [published]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   CARGO_TERM_COLOR: always
+  REGISTRY: ghcr.io
+  RUST_VERSION: 1.63.0
 
 jobs:
   linux:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          profile: minimal
+          toolchain: ${{ env.RUST_VERSION }}
+          override: true
+      - name: Init cache
+        uses: Swatinem/rust-cache@v1
       - name: Setup Mold
         uses: rui314/setup-mold@v1
         with:
           mold-version: 1.4.0
           make-default: false
-      - name: Setup Rust toolchain
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -49,7 +60,7 @@ jobs:
           
   publish:
     needs: [linux]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       GH_REPO: ${{ github.repository }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
