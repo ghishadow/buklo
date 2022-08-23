@@ -24,11 +24,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Setup Mold
-        uses: rui314/setup-mold@v1
-        with:
-          mold-version: 1.4.0
-          make-default: false
       - name: Set artifact name
         shell: bash
         run: |
@@ -44,7 +39,16 @@ jobs:
           profile: minimal
           override: true
           target: ${{ matrix.target }}
-
+      
+      - name: Init cache
+        uses: Swatinem/rust-cache@v1
+      
+      - name: Setup Mold
+        uses: rui314/setup-mold@v1
+        with:
+          mold-version: 1.4.1
+          make-default: false
+    
       - name: Build binary
         uses: actions-rs/cargo@v1
         with:

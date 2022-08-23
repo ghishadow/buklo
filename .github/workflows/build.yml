@@ -1,4 +1,4 @@
-name: Release
+name: build
 
 on:
   schedule:
@@ -38,7 +38,7 @@ jobs:
       - name: Setup Mold
         uses: rui314/setup-mold@v1
         with:
-          mold-version: 1.4.0
+          mold-version: 1.4.1
           make-default: false
       - name: Install dependencies
         run: |
