@@ -55,7 +55,6 @@ jobs:
         with:
           command: build
           args: --release --target=${{ matrix.target }} --color=always --verbose
-          use-cross: ${{ runner.os == 'Linux' }}
 
       - name: Package (*nix)
         if: runner.os != 'Windows'
