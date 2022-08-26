@@ -4,6 +4,8 @@ on:
     branches: [main]
     tags: ["v[0-9]+.[0-9]+.[0-9]+"]
   pull_request:
+    branches-ignore:
+        - 'dependabot/**'
   workflow_dispatch:
 
 jobs:
@@ -33,7 +35,7 @@ jobs:
           echo "version: $version"
           echo "artifact: $name"
       - name: Install Rust
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
           profile: minimal
