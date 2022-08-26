@@ -32,7 +32,6 @@ jobs:
         with:
           profile: minimal
           toolchain: ${{ env.RUST_VERSION }}
-          override: true
       - name: Init cache
         uses: Swatinem/rust-cache@v1
       - name: Setup Mold

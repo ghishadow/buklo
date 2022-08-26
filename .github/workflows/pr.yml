@@ -43,7 +43,6 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          override: true
       - run: rustup component add rustfmt
       - uses: Swatinem/rust-cache@v1
       - uses: actions-rs/cargo@v1
@@ -59,7 +58,6 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          override: true
       - run: rustup component add clippy
       - name: Install dependencies on Ubuntu
         run: sudo apt-get update && sudo apt-get build-essential
