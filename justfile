@@ -17,7 +17,7 @@ default:
 
 # create a nix shell with all tools needed for development
 shell:
-   nix develop .  --command "zsh"
+   nix develop .  --command "nu"
 
 run:
   cargo run
