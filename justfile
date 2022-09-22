@@ -74,6 +74,9 @@ sloc:
 fuzz:
   cargo +nightly fuzz run fuzz-compiler
 
+dummy-url:
+  buklo --url https://rickandmortyapi.com/api/character/1 --method GET | jq
+
 # publish current GitHub master branch
 publish:
   #!/usr/bin/env bash
