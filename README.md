@@ -6,6 +6,7 @@
 [![Rust Report Card](https://rust-reportcard.xuri.me/badge/github.com/ghishadow/buklo)](https://rust-reportcard.xuri.me/report/github.com/ghishadow/buklo)
 [![Dependencies][dependencies-badge]][dependencies-url]
 [![Build Status][actions-badge]][actions-url]
+[![codecov](https://codecov.io/gh/ghishadow/buklo/branch/main/graph/badge.svg)](https://codecov.io/gh/ghishadow/buklo)
 
 ## Getting Started
 
