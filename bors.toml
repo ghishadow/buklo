@@ -1,5 +1,9 @@
+status = [
+  "check",
+]
 delete_merged_branches = true
 block_labels = ["blocked"]
 requires_approvals = 2
 use_squash_merge = true
 update_base_for_deletes = true
+timeout_sec = 10800

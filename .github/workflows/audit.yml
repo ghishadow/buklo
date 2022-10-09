@@ -1,4 +1,4 @@
-name: Security audit
+name: Run cargo-audit
 on:
   pull_request:
     paths:
@@ -9,7 +9,7 @@ on:
       - '**/Cargo.toml'
       - '**/Cargo.lock'
   schedule:
-  - cron: '1 1 1 * *'
+  - cron: '0 0 * * *'
 jobs:
   security_audit:
     runs-on: ubuntu-latest

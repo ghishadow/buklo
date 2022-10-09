@@ -4,6 +4,7 @@ book
 
 ### Custom ###
 .vscode/
+.idea/
 
 ### Rust ###
 # Compiled files and executables

@@ -2,8 +2,15 @@ use clap::Parser;
 use std::error;
 use std::fmt;
 use std::io;
+
 mod version;
+
 use crate::version::check_version;
+
+use mimalloc::MiMalloc;
+
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
 
 #[macro_use]
 extern crate log;
@@ -39,25 +46,19 @@ impl fmt::Display for Error {
 
 impl From<StringError> for Error {
     fn from(source: StringError) -> Self {
-        Error {
-            source: source.into(),
-        }
+        Error { source: source.into() }
     }
 }
 
 impl From<ureq::Error> for Error {
     fn from(source: ureq::Error) -> Self {
-        Error {
-            source: source.into(),
-        }
+        Error { source: source.into() }
     }
 }
 
 impl From<io::Error> for Error {
     fn from(source: io::Error) -> Self {
-        Error {
-            source: source.into(),
-        }
+        Error { source: source.into() }
     }
 }
 
@@ -69,18 +70,10 @@ fn request(
     print_headers: bool,
 ) -> Result<(), Error> {
     let req = agent.request(method, url);
-    let response = if method == "GET" && data.is_empty() {
-        req.call()?
-    } else {
-        req.send_bytes(data)?
-    };
+    let response =
+        if method == "GET" && data.is_empty() { req.call()? } else { req.send_bytes(data)? };
     if print_headers {
-        println!(
-            "{} {} {}",
-            response.http_version(),
-            response.status(),
-            response.status_text()
-        );
+        println!("{} {} {}", response.http_version(), response.status(), response.status_text());
         for h in response.headers_names() {
             println!("{}: {}", h, response.header(&h).unwrap_or_default());
         }
@@ -104,7 +97,7 @@ struct Args {
     body: Option<String>,
 }
 
-fn main()  {
+fn main() {
     env_logger::init();
     info!("Starting up Buklo");
     info!("Checking for updates");
@@ -124,10 +117,7 @@ fn start() -> Result<(), Error> {
 
     let mut print_headers: bool = false;
     let method: String = args.method;
-    let body: Vec<u8> = args
-        .body
-        .as_deref()
-        .map_or(Vec::new(), |s| s.as_bytes().to_vec());
+    let body: Vec<u8> = args.body.as_deref().map_or(Vec::new(), |s| s.as_bytes().to_vec());
     let url = args.url;
 
     if args.headers {

@@ -1,5 +1,13 @@
+# https://doc.rust-lang.org/cargo/reference/config.html
 [build]
 jobs = 6
+incremental = true  # whether or not to enable incremental compilation
+
+[alias]
+b = "build"
+
+[future-incompat-report]
+frequency = 'always'
 
 # https://blog.rust-lang.org/2022/06/22/sparse-registry-testing.html
 [unstable]

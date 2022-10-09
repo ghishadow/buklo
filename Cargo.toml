@@ -14,14 +14,15 @@ rust-version = "1.63"
 maintenance = { status = "actively-developed" }
 
 [dependencies]
-ureq = { version = "2.5.0", features = ["json", "socks-proxy", "native-certs"] }
-clap = { version = "4.0.8", features = ["derive", "cargo", "color", "env", "unicode", "wrap_help"] } 
-serde = "1.0.145"
+ureq = { version = "2.5.0", default-features = false, features = ["gzip", "json", "socks-proxy", "native-certs"] }
+clap = { version = "4", features = ["derive", "cargo", "color", "env", "unicode", "wrap_help"] } 
+serde = "1.0.144"
 update-informer = "0.5.0" 
 owo-colors = "3.5.0"
 log = "0.4.17"
-env_logger = "0.9.1"
-url = "2.3.1"
+env_logger = "0.9.0"
+url = "2.2.2"
+mimalloc = "0.1.29" 
 
 [profile.dev]
 opt-level = 0
