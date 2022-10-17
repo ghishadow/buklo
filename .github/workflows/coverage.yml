@@ -22,7 +22,7 @@ jobs:
         with:
           toolchain: stable
           components: llvm-tools-preview
-      - uses: Swatinem/rust-cache@c5ed9ba6b7e1bb8aff90d43acd2f0af4990fa57c
+      - uses: Swatinem/rust-cache@22c9328bcba27aa81a32b1bef27c7e3c78052531
       
       - name: Install latest nextest release
         uses: taiki-e/install-action@nextest
