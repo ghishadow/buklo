@@ -16,10 +16,6 @@
 
 ```
 
-you can directly start working on this repository by clicking on the following button
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ghishadow/buklo)
-
 ## Demo
 
 [![asciicast](https://asciinema.org/a/486793.svg)](https://asciinema.org/a/486793?theme=monokai?row=30)
