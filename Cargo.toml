@@ -8,7 +8,7 @@ readme = "README.md"
 repository = "https://github.com/ghishadow/buklo"
 documentation = "https://docs.rs/crate/buklo"
 edition = "2021"
-rust-version = "1.63"
+rust-version = "1.64"
 
 [badges]
 maintenance = { status = "actively-developed" }
