@@ -30,3 +30,7 @@
 [docs-url]: https://docs.rs/buklo
 [dependencies-badge]: https://img.shields.io/librariesio/release/cargo/buklo.svg
 [dependencies-url]: https://crates.io/crates/buklo/dependencies
+
+
+
+![Visualization of the codebase](./diagram.svg)
