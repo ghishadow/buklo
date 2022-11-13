@@ -17,12 +17,13 @@
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            cargo
-            rustc
-            cargo-watch
+            rustup
             cargo-outdated
             cargo-edit
             cargo-audit
+            cargo-deny
+            cargo-nextest
+            cargo-watch
             jo
             rust-analyzer
             rustfmt
@@ -32,8 +33,7 @@
             # to test github actions
             act
             # Tools
-            docker
-            cargo-audit
+            helix
             nixfmt
             cargo-cross
             # Dependencies

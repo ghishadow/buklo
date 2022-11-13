@@ -1,9 +1,8 @@
-use clap::Parser;
-use std::error;
-use std::fmt;
-use std::io;
-
+use argh::FromArgs;
 mod version;
+mod request;
+
+use crate::request::request;
 
 use crate::version::check_version;
 
@@ -12,97 +11,30 @@ use mimalloc::MiMalloc;
 #[global_allocator]
 static GLOBAL: MiMalloc = MiMalloc;
 
-#[macro_use]
-extern crate log;
-#[derive(Debug)]
-struct StringError(String);
-
-impl error::Error for StringError {}
-
-impl fmt::Display for StringError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.0)
-    }
-}
-
-impl From<String> for StringError {
-    fn from(source: String) -> Self {
-        Self(source)
-    }
-}
-
-#[derive(Debug)]
-struct Error {
-    source: Box<dyn error::Error>,
-}
-
-impl error::Error for Error {}
-
-impl fmt::Display for Error {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.source)
-    }
-}
-
-impl From<StringError> for Error {
-    fn from(source: StringError) -> Self {
-        Error { source: source.into() }
-    }
-}
-
-impl From<ureq::Error> for Error {
-    fn from(source: ureq::Error) -> Self {
-        Error { source: source.into() }
-    }
-}
-
-impl From<io::Error> for Error {
-    fn from(source: io::Error) -> Self {
-        Error { source: source.into() }
-    }
-}
-
-fn request(
-    agent: &ureq::Agent,
-    method: &str,
-    url: &str,
-    data: &[u8],
-    print_headers: bool,
-) -> Result<(), Error> {
-    let req = agent.request(method, url);
-    let response =
-        if method == "GET" && data.is_empty() { req.call()? } else { req.send_bytes(data)? };
-    if print_headers {
-        println!("{} {} {}", response.http_version(), response.status(), response.status_text());
-        for h in response.headers_names() {
-            println!("{}: {}", h, response.header(&h).unwrap_or_default());
-        }
-        println!();
-    }
-    let mut reader = response.into_reader();
-    io::copy(&mut reader, &mut io::stdout())?;
-    Ok(())
-}
-
-#[derive(Parser, Debug)]
-#[clap(author, version, about)]
+#[derive(FromArgs)]
+/// Test
 struct Args {
-    #[clap(short, long)]
+    /// method Name
+    #[argh(option, short = 'm')]
     method: String,
-    #[clap(short, long)]
+    /// url
+    #[argh(option, short = 'u')]
     url: String,
-    #[clap(short, long)]
+    /// headers
+    #[argh(option, default = "true")]
     headers: bool,
-    #[clap(short, long)]
+    /// body
+    #[argh(option, short = 'b')]
     body: Option<String>,
 }
 
-fn main() {
-    env_logger::init();
-    info!("Starting up Buklo");
-    info!("Checking for updates");
+#[tokio::main]
+async fn main() {
+//     env_logger::init();
+//     info!("Starting up Buklo");
+//     info!("Checking for updates");
     check_version();
-    match start() {
+    match start().await {
         Ok(()) => {}
         Err(e) => {
             eprintln!("{}", e);
@@ -111,8 +43,8 @@ fn main() {
     }
 }
 
-fn start() -> Result<(), Error> {
-    let args = Args::parse();
+async fn start() -> Result<(), request::Error> {
+    let args: Args = argh::from_env();
     let builder = ureq::builder();
 
     let mut print_headers: bool = false;
@@ -125,7 +57,7 @@ fn start() -> Result<(), Error> {
     }
 
     let agent = builder.build();
-    request(&agent, &method, &url, &body, print_headers)?;
+    request(&agent, &method, &url, &body, print_headers).await?;
 
     Ok(())
 }
