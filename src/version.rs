@@ -3,7 +3,7 @@ use std::time::Duration;
 use update_informer::{registry::Crates, Check};
 
 // TODO implement github release check
-pub fn check_version() {
+pub async fn check_version() {
     let pkg_name = env!("CARGO_PKG_NAME");
     let current_version = env!("CARGO_PKG_VERSION");
     let interval = Duration::from_secs(60 * 60 * 24);

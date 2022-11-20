@@ -6,10 +6,8 @@ use crate::request::request;
 
 use crate::version::check_version;
 
-use mimalloc::MiMalloc;
-
 #[global_allocator]
-static GLOBAL: MiMalloc = MiMalloc;
+static ALLOC: snmalloc_rs::SnMalloc = snmalloc_rs::SnMalloc;
 
 #[derive(FromArgs)]
 /// Test
@@ -30,10 +28,12 @@ struct Args {
 
 #[tokio::main]
 async fn main() {
-//     env_logger::init();
-//     info!("Starting up Buklo");
-//     info!("Checking for updates");
-    check_version();
+    /*
+        env_logger::init();
+        info!("Starting up Buklo");
+        info!("Checking for updates");
+    */
+    check_version().await;
     match start().await {
         Ok(()) => {}
         Err(e) => {
