@@ -20,7 +20,7 @@ ureq = { version = "2.5", default-features = false, features = [
     "socks-proxy",
     "native-certs",
 ] }
-update-informer = "0.5"
+update-informer = "0.6"
 owo-colors = "3.5"
 url = "2.3"
 snmalloc-rs = "0.3.3"
