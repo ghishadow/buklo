@@ -14,7 +14,7 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 argh = "0.1"
-ureq = { version = "2.5", default-features = false, features = [
+ureq = { version = "2.6", default-features = false, features = [
     "gzip",
     "json",
     "socks-proxy",
