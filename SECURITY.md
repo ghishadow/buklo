@@ -12,5 +12,5 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-Please report at ghishadow@icloud.com
+Please report at suraj@ghishadow.com
 
