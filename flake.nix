@@ -23,7 +23,6 @@
             cargo-audit
             cargo-deny
             cargo-nextest
-            cargo-watch
             jo
             rust-analyzer
             rustfmt
