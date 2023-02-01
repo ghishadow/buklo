@@ -1,6 +1,8 @@
 use std::io;
 use std::error;
 use std::fmt;
+use spinoff::{Spinner, spinners, Color, Streams};
+
 
 #[derive(Debug)]
 struct StringError(String);
@@ -58,7 +60,9 @@ pub async fn request(
     data: &[u8],
     print_headers: bool,
 ) -> Result<(), Error> {
+    let spinner = Spinner::new_with_stream(spinners::Line, "Requesting...", Color::Yellow, Streams::Stderr);
     let req = agent.request(method, url);
+    spinner.stop_and_persist("📜", "Request done.");
     let response =
         if method == "GET" && data.is_empty() { req.call()? } else { req.send_bytes(data)? };
     if print_headers {

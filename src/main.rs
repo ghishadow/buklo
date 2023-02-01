@@ -37,7 +37,7 @@ async fn main() {
     match start().await {
         Ok(()) => {}
         Err(e) => {
-            eprintln!("{}", e);
+            eprintln!("{e}");
             std::process::exit(1);
         }
     }

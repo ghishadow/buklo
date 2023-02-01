@@ -16,6 +16,6 @@ pub async fn check_version() {
             new_version = version.to_string().green()
         );
 
-        println!("\n{msg}", msg = msg);
+        println!("\n{msg}");
     }
 }

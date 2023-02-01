@@ -23,7 +23,8 @@ ureq = { version = "2.6", default-features = false, features = [
 update-informer = "0.6"
 owo-colors = "3.5"
 url = "2.3"
-snmalloc-rs = "0.3.3"
+snmalloc-rs = "0.3"
+spinoff = { version = "0.7", features = ["dots", "arc", "line"] }
 tracing = "0.1"
 tokio = { version = "1", features = ["tracing", "macros", "rt-multi-thread"] }
 
