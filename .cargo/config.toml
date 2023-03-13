@@ -9,9 +9,8 @@ b = "build"
 [future-incompat-report]
 frequency = 'always'
 
-# https://blog.rust-lang.org/2022/06/22/sparse-registry-testing.html
-[unstable]
-sparse-registry = true
+[registries.crates-io]
+protocol = "sparse"
 
 [target.aarch64-unknown-linux-gnu]
 linker = "aarch64-linux-gnu-gcc"
