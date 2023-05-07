@@ -19,6 +19,7 @@ ureq = { version = "2.6", default-features = false, features = [
     "json",
     "socks-proxy",
     "native-certs",
+    "native-tls",
 ] }
 update-informer = "0.6"
 owo-colors = "3.5"
