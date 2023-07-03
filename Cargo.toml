@@ -21,7 +21,7 @@ ureq = { version = "2.7", default-features = false, features = [
     "native-certs",
     "native-tls",
 ] }
-update-informer = "1.0"
+update-informer = "1.1"
 owo-colors = "3.5"
 url = "2.4"
 snmalloc-rs = "0.3"
