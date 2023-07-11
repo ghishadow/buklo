@@ -2,7 +2,7 @@
 
 {
 
-  packages = with pkgs; [ git ];
+  packages = with pkgs; [ git openssl ];
 
 
 
