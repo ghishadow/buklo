@@ -2,7 +2,7 @@
 
 {
 
-  packages = with pkgs; [ git openssl ];
+  packages = with pkgs; [ git openssl cmake cargo-audit ];
 
   # https://devenv.sh/languages/
   languages.nix.enable = true;

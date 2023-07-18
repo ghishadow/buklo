@@ -55,8 +55,11 @@ jobs:
       - name: Build binary
         uses: dtolnay/rust-toolchain@v1
         with:
-          command: build
-          args: --release --target=${{ matrix.target }} --color=always --verbose
+          toolchain: stable
+          components: rustfmt
+      - name: Check formatting
+        run: |
+          cargo build --release --target=${{ matrix.target }} --color=always --verbose
 
       - name: Package (*nix)
         if: runner.os != 'Windows'
