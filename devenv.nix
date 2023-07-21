@@ -2,9 +2,8 @@
 
 {
 
-  packages = with pkgs; [ git openssl cmake cargo-audit ];
+  packages = with pkgs; [ git openssl cmake cargo-audit rustup cargo-cache cargo-dist cargo-insta ];
 
-  # https://devenv.sh/languages/
   languages.nix.enable = true;
   languages.rust.enable = true;
 

@@ -45,6 +45,6 @@ rpath = false
 [profile.release]
 codegen-units = 1
 lto = true
-opt-level = "s"     # Optimize for size
+opt-level = "s"
 strip = "debuginfo"
 panic = "abort"

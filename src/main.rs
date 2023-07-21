@@ -45,7 +45,7 @@ async fn main() {
 
 async fn start() -> Result<(), request::Error> {
     let args: Args = argh::from_env();
-    let builder = ureq::builder();
+    
 
     let mut print_headers: bool = false;
     let method: String = args.method;
@@ -55,9 +55,7 @@ async fn start() -> Result<(), request::Error> {
     if args.headers {
         print_headers = true;
     }
-
-    let agent = builder.build();
-    request(&agent, &method, &url, &body, print_headers).await?;
+    request(&method, &url, &body, print_headers).await?;
 
     Ok(())
 }

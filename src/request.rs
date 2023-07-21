@@ -53,12 +53,13 @@ impl From<io::Error> for Error {
 
 
 pub async fn request(
-    agent: &ureq::Agent,
     method: &str,
     url: &str,
     data: &[u8],
     print_headers: bool,
 ) -> Result<(), Error> {
+    let builder = ureq::builder();
+    let agent = builder.build();
     let req = agent.request(method, url);
     let response =
         if method == "GET" && data.is_empty() { req.call()? } else { req.send_bytes(data)? };
