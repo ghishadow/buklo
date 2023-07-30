@@ -6,11 +6,26 @@ incremental = true  # whether or not to enable incremental compilation
 [alias]
 b = "build"
 
+[env]
+CXX = "clang++"
+CXXSTDLIB = "libc++"
+CXXFLAGS = "-std=gnu++2a -fcoroutines-ts -stdlib=libc++"
+
+
 [future-incompat-report]
 frequency = 'always'
 
 [registries.crates-io]
 protocol = "sparse"
+
+
+[target.x86_64-unknown-linux-gnu]
+linker = "clang"
+rustflags = [
+  "-C",
+  "link-arg=-fuse-ld=mold",
+]
+
 
 [target.aarch64-unknown-linux-gnu]
 linker = "aarch64-linux-gnu-gcc"
