@@ -27,7 +27,7 @@ jobs:
           profile: minimal
           toolchain: ${{ matrix.toolchain }}
 
-      - uses: Swatinem/rust-cache@dd05243424bd5c0e585e4b55eb2d7615cdd32f1f
+      - uses: Swatinem/rust-cache@b8a6852b4f997182bdea832df3f9e153038b5191
 
       - name: Setup Mold
         uses: rui314/setup-mold@v1
@@ -53,7 +53,7 @@ jobs:
           profile: minimal
           toolchain: stable
       - run: rustup component add rustfmt
-      - uses: Swatinem/rust-cache@dd05243424bd5c0e585e4b55eb2d7615cdd32f1f
+      - uses: Swatinem/rust-cache@b8a6852b4f997182bdea832df3f9e153038b5191
 
       - name: Setup Mold
         uses: rui314/setup-mold@v1
@@ -80,7 +80,7 @@ jobs:
       - run: rustup component add clippy
       - name: Install dependencies on Ubuntu
         run: sudo apt-get update && sudo apt-get build-essential
-      - uses: Swatinem/rust-cache@dd05243424bd5c0e585e4b55eb2d7615cdd32f1f
+      - uses: Swatinem/rust-cache@b8a6852b4f997182bdea832df3f9e153038b5191
 
       - name: Setup Mold
         uses: rui314/setup-mold@v1
