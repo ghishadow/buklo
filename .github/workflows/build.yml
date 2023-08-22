@@ -33,7 +33,7 @@ jobs:
           profile: minimal
           toolchain: ${{ env.RUST_VERSION }}
       - name: Init cache
-        uses: Swatinem/rust-cache@578b235f6e5f613f7727f1c17bd3305b4d4d4e1f
+        uses: Swatinem/rust-cache@e207df5d269b42b69c8bc5101da26f7d31feddb4
       - name: Setup Mold
         uses: rui314/setup-mold@v1
         with:
