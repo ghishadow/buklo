@@ -42,7 +42,7 @@ rustflags = [
   rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 [target.aarch64-apple-darwin]
   linker = "/usr/bin/clang"
-  rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+  rustflags = ["-C", "link-arg=-fuse-ld=lld"]
   
 [target.x86_64-pc-windows-msvc]
 linker = "lld-link.exe"
