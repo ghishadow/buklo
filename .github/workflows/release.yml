@@ -26,7 +26,7 @@ jobs:
           #   target: aarch64-pc-windows-msvc
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set artifact name
@@ -44,7 +44,7 @@ jobs:
           target: ${{ matrix.target }}
       
       - name: Init cache
-        uses: Swatinem/rust-cache@e207df5d269b42b69c8bc5101da26f7d31feddb4
+        uses: Swatinem/rust-cache@a95ba195448af2da9b00fb742d14ffaaf3c21f43
       
       - name: Setup Mold
         uses: rui314/setup-mold@v1
