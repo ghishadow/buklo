@@ -1,6 +1,6 @@
 # https://doc.rust-lang.org/cargo/reference/config.html
 [build]
-jobs = 6
+jobs = 4
 incremental = true  # whether or not to enable incremental compilation
 
 [alias]
@@ -42,7 +42,7 @@ rustflags = [
   rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 [target.aarch64-apple-darwin]
   linker = "/usr/bin/clang"
-  rustflags = ["-C", "link-arg=-fuse-ld=lld"]
-  
+  rustflags = ["-C", "link-arg=-fuse-ld=ld"]
+
 [target.x86_64-pc-windows-msvc]
 linker = "lld-link.exe"
