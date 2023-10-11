@@ -45,4 +45,10 @@ rustflags = [
   rustflags = ["-C", "link-arg=-fuse-ld=ld"]
 
 [target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+linker = "lld-link.exe"
+
+
+[target.aarch64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
 linker = "lld-link.exe"
