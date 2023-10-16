@@ -6,6 +6,7 @@ use crate::request::request;
 
 use crate::version::check_version;
 
+#[cfg(not(target_os = "openbsd"))]
 #[global_allocator]
 static ALLOC: snmalloc_rs::SnMalloc = snmalloc_rs::SnMalloc;
 
