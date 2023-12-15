@@ -50,7 +50,7 @@ jobs:
           mkdir buklo
           cp ./target/release/buklo buklo/
           tar -zcvf ./buklo-linux.tar.gz buklo
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: buklo-linux
           path: |
