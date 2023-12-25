@@ -22,7 +22,7 @@ ureq = { version = "2.9", default-features = false, features = [
     "native-tls",
 ] }
 update-informer = "1.1"
-owo-colors = "3.5"
+owo-colors = "4.0"
 url = "2.5"
 snmalloc-rs = "0.3"
 tracing = "0.1"
