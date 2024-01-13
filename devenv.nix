@@ -12,9 +12,9 @@
     cargo-insta
     cargo-audit
     cargo-auditable
-    clang_16
-    llvmPackages_16.stdenv
-    lld_16
+    clang_17
+    llvmPackages_17.stdenv
+    lld_17
     rust-analyzer
     nil
     zoxide
