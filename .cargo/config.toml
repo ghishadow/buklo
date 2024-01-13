@@ -12,6 +12,8 @@ CXXSTDLIB = "libc++"
 CXXFLAGS = "-std=c++20"
 
 
+
+
 [future-incompat-report]
 frequency = 'always'
 
@@ -43,7 +45,7 @@ rustflags = [
   rustflags = ["-C", "link-arg=-fuse-ld=ld"]
 
 [target.x86_64-pc-windows-msvc]
-rustflags = ["-C", "target-feature=+crt-static"]
+rustflags = ["-C", "target-feature=+crt-static", "-Zlocation-detail=none"]
 linker = "lld-link.exe"
 [target.aarch64-pc-windows-msvc]
 rustflags = ["-C", "target-feature=+crt-static"]
