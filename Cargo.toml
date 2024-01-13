@@ -1,6 +1,6 @@
 [package]
 name = "buklo"
-version = "0.1.11"
+version = "0.1.12"
 description = "Buklo is a simple CLI HTTP client"
 keywords = ["cli", "http"]
 license = "MIT"
