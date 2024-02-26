@@ -1,4 +1,3 @@
-# https://doc.rust-lang.org/cargo/reference/config.html
 [build]
 jobs = 4
 incremental = true  # whether or not to enable incremental compilation
@@ -45,7 +44,7 @@ rustflags = [
   rustflags = ["-C", "link-arg=-fuse-ld=ld"]
 
 [target.x86_64-pc-windows-msvc]
-rustflags = ["-C", "target-feature=+crt-static", "-Zlocation-detail=none"]
+rustflags = ["-C", "target-feature=+crt-static"]
 linker = "lld-link.exe"
 [target.aarch64-pc-windows-msvc]
 rustflags = ["-C", "target-feature=+crt-static"]
