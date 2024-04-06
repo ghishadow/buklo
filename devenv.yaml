@@ -7,5 +7,3 @@ inputs:
         follows: nixpkgs
   nixpkgs:
     url: github:NixOS/nixpkgs/nixpkgs-unstable
-  devenv:
-    url: github:cachix/devenv/python-rewrite
