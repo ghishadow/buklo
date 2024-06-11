@@ -1,13 +1,14 @@
+cargo-features = ["edition2024"]
 [package]
 name = "buklo"
-version = "0.1.12"
+version = "0.1.13"
 description = "Buklo is a simple CLI HTTP client"
-keywords = ["cli", "http"]
+keywords = ["cli", "http", "https"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/ghishadow/buklo"
 documentation = "https://docs.rs/crate/buklo"
-edition = "2021"
+edition = "2024"
 
 [badges]
 maintenance = { status = "actively-developed" }

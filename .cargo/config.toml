@@ -1,6 +1,6 @@
 [build]
-jobs = 4
-incremental = true  # whether or not to enable incremental compilation
+jobs = 8
+incremental = true # whether or not to enable incremental compilation
 
 [alias]
 b = "build"
@@ -9,8 +9,6 @@ b = "build"
 CXX = "clang++"
 CXXSTDLIB = "libc++"
 CXXFLAGS = "-std=c++20"
-
-
 
 
 [future-incompat-report]
@@ -22,26 +20,25 @@ protocol = "sparse"
 
 [target.x86_64-unknown-linux-gnu]
 linker = "clang"
-rustflags = [
-  "-C",
-  "link-arg=-fuse-ld=mold",
-]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+
 [target.aarch64-unknown-linux-gnu]
 linker = "aarch64-linux-gnu-gcc"
-rustflags = [
-  "-Z",
-  "new-llvm-pass-manager=no",
-]
+rustflags = ["-Z", "new-llvm-pass-manager=no"]
+
 [target.aarch64-unknown-linux-musl]
-  linker = "/usr/bin/clang"
-  rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+linker = "/usr/bin/clang"
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+
 [target.x86_64-unknown-linux-musl]
-  linker = "/usr/bin/clang"
-  rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+linker = "/usr/bin/clang"
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+
 
 [target.aarch64-apple-darwin]
-  linker = "/usr/bin/clang"
-  rustflags = ["-C", "link-arg=-fuse-ld=ld"]
+linker = "/usr/bin/clang"
+rustflags = ["-C", "link-arg=-fuse-ld=ld"]
+
 
 [target.x86_64-pc-windows-msvc]
 rustflags = ["-C", "target-feature=+crt-static"]
@@ -52,4 +49,4 @@ linker = "lld-link.exe"
 
 [target.x86_64-unknown-linux-openbsd]
 cc = "x86_64-openbsd-cc"
-linker = "clang-16" 
+linker = "clang-16"
