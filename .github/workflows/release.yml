@@ -22,8 +22,8 @@ jobs:
 
           - os: windows-latest
             target: x86_64-pc-windows-msvc
-          # - os: windows-latest
-          #   target: aarch64-pc-windows-msvc
+          - os: windows-latest
+            target: aarch64-pc-windows-msvc
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -49,7 +49,7 @@ jobs:
       - name: Setup Mold
         uses: rui314/setup-mold@v1
         with:
-          mold-version: 1.4.1
+          mold-version: 2.32.0
           make-default: false
     
       - name: Build binary

@@ -32,7 +32,7 @@ jobs:
       - name: Setup Mold
         uses: rui314/setup-mold@v1
         with:
-          mold-version: 1.4.1
+          mold-version: 2.32.0
           make-default: false
 
       - uses: dtolnay/rust-toolchain@v1
@@ -58,7 +58,7 @@ jobs:
       - name: Setup Mold
         uses: rui314/setup-mold@v1
         with:
-          mold-version: 1.4.1
+          mold-version: 2.32.0
           make-default: false
       
       - uses: dtolnay/rust-toolchain@v1
@@ -85,7 +85,7 @@ jobs:
       - name: Setup Mold
         uses: rui314/setup-mold@v1
         with:
-          mold-version: 1.4.1
+          mold-version: 2.32.0
           make-default: false
   
       - uses: dtolnay/rust-toolchain@v1
