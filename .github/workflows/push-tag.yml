@@ -6,7 +6,7 @@ on:
 jobs:
   push_tag:
     if: github.repository == 'ghishadow/buklo'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:

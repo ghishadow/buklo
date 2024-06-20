@@ -10,7 +10,7 @@ name: Test coverage
 jobs:
   coverage:
     name: Collect test coverage
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # nightly rust might break from time to time
     continue-on-error: true
     env:

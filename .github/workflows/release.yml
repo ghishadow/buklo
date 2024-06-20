@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             target: x86_64-unknown-linux-gnu
 
           - os: windows-latest
@@ -42,16 +42,16 @@ jobs:
         with:
           toolchain: stable
           target: ${{ matrix.target }}
-      
+
       - name: Init cache
         uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84
-      
+
       - name: Setup Mold
         uses: rui314/setup-mold@v1
         with:
           mold-version: 2.32.0
           make-default: false
-    
+
       - name: Build binary
         uses: dtolnay/rust-toolchain@v1
         with:

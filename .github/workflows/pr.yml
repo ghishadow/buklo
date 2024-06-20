@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: [ ubuntu-24.04, windows-latest, macos-latest ]
         toolchain: [ stable ]
 
     runs-on: ${{ matrix.os }}
@@ -45,7 +45,7 @@ jobs:
 
   fmt:
     name: Rustfmt
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
@@ -70,7 +70,7 @@ jobs:
           cargo fmt --all -- --check
   clippy:
     name: Clippy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable

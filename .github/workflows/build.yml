@@ -22,7 +22,7 @@ env:
 
 jobs:
   linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: checkout repository
@@ -59,7 +59,7 @@ jobs:
           
   publish:
     needs: [linux]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       GH_REPO: ${{ github.repository }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
