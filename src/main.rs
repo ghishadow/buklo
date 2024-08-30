@@ -42,7 +42,6 @@ async fn main() {
 
 async fn start() -> Result<(), request::Error> {
     let args: Args = argh::from_env();
-    
 
     let mut print_headers: bool = false;
     let method: String = args.method;

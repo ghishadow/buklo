@@ -1,7 +1,6 @@
-use std::io;
 use std::error;
 use std::fmt;
-
+use std::io;
 
 #[derive(Debug)]
 struct StringError(String);
@@ -50,7 +49,6 @@ impl From<io::Error> for Error {
         Error { source: source.into() }
     }
 }
-
 
 pub async fn request(
     method: &str,
