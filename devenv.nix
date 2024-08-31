@@ -2,7 +2,8 @@
   stdenv = pkgs.stdenvAdapters.useMoldLinker pkgs.llvmPackages_18.stdenv;
 
   env.CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = true;
-  env.LC_ALL = "en_US.UTF-8";
+  env.LC_ALL="en_US.UTF-8";
+  
   packages = with pkgs; [
     git
     openssl
@@ -41,6 +42,7 @@
     };
   };
 
+ 
   pre-commit.hooks = {
     clippy.enable = true;
     rustfmt.enable = true;
