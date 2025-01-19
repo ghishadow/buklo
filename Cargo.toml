@@ -19,14 +19,14 @@ unsafe_code = "forbid"
 
 [dependencies]
 argh = "0.1"
-ureq = { version = "2.10", default-features = false, features = [
+ureq = { version = "2.12", default-features = false, features = [
     "gzip",
     "json",
     "socks-proxy",
     "native-certs",
     "native-tls",
 ] }
-update-informer = "1.1"
+update-informer = "1.2"
 owo-colors = "4.1"
 url = "2.5"
 tracing = "0.1"
