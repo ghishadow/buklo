@@ -1,5 +1,4 @@
 
-cargo-features = ["edition2024"]
 [package]
 name = "buklo"
 version = "0.1.14"
