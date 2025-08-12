@@ -1,5 +1,5 @@
 
-ARG ALPINE_VERSION="3.18"
+ARG ALPINE_VERSION="3.20"
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-alpine-${ALPINE_VERSION}
 
 USER root
