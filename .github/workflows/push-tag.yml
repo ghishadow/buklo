@@ -8,7 +8,7 @@ jobs:
     if: github.repository == 'ghishadow/buklo'
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
