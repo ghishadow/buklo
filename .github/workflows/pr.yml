@@ -1,47 +1,48 @@
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    pull_request:
+        types: [opened, synchronize, reopened, ready_for_review]
 
 name: Pull request checks
 
 jobs:
-  check:
-    name: Rust (${{ matrix.toolchain }}) on ${{ matrix.os }}
-    if: github.event.pull_request.draft == false
+    check:
+        name: Rust (${{ matrix.toolchain }}) on ${{ matrix.os }}
+        if: github.event.pull_request.draft == false
 
-    strategy:
-      matrix:
-        os: [ ubuntu-24.04, windows-latest, macos-latest ]
-        toolchain: [ stable ]
+        strategy:
+            matrix:
+                os: [ubuntu-26.04, windows-latest, macos-latest]
+                toolchain: [stable]
 
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v4
+        runs-on: ${{ matrix.os }}
+        steps:
+            - uses: actions/checkout@v4
 
-      - name: Install dependencies on Ubuntu
-        if: startsWith(matrix.os, 'ubuntu')
-        run: sudo apt-get update && sudo apt-get install build-essential
+            - name: Install dependencies on Ubuntu
+              if: startsWith(matrix.os, 'ubuntu')
+              run: sudo apt-get update && sudo apt-get install build-essential
 
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          profile: minimal
-          toolchain: ${{ matrix.toolchain }}
+            - uses: dtolnay/rust-toolchain@stable
+              with:
+                  profile: minimal
+                  toolchain: ${{ matrix.toolchain }}
 
       - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4
+            - uses: Swatinem/rust-cache@82a92a6e8fbeee089604da2575dc567ae9ddeaab
 
-      - name: Setup Mold
-        uses: rui314/setup-mold@v1
-        with:
-          mold-version: 2.32.0
-          make-default: false
+            - name: Setup Mold
+              uses: rui314/setup-mold@v1
+              with:
+                  mold-version: 2.32.0
+                  make-default: false
 
-      - uses: dtolnay/rust-toolchain@v1
-        with:
-            toolchain: stable
-            components: rustfmt
-      - name: Check formatting
-        run: |
-          cargo test --workspace
+            - uses: dtolnay/rust-toolchain@v1
+              with:
+                  toolchain: stable
+                  components: rustfmt
+            - name: Check formatting
+              run: |
+                  cargo test --workspace
 
   fmt:
     name: Rustfmt
@@ -81,17 +82,55 @@ jobs:
       - name: Install dependencies on Ubuntu
         run: sudo apt-get update && sudo apt-get build-essential
       - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4
+    fmt:
+        name: Rustfmt
+        runs-on: ubuntu-26.04
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@stable
+              with:
+                  profile: minimal
+                  toolchain: stable
+            - run: rustup component add rustfmt
+            - uses: Swatinem/rust-cache@82a92a6e8fbeee089604da2575dc567ae9ddeaab
 
-      - name: Setup Mold
-        uses: rui314/setup-mold@v1
-        with:
-          mold-version: 2.32.0
-          make-default: false
-  
-      - uses: dtolnay/rust-toolchain@v1
-        with:
-            toolchain: stable
-            components: rustfmt
-      - name: Check formatting
-        run: |
-            cargo fmt --all -- --check
+            - name: Setup Mold
+              uses: rui314/setup-mold@v1
+              with:
+                  mold-version: 2.32.0
+                  make-default: false
+
+            - uses: dtolnay/rust-toolchain@v1
+              with:
+                  toolchain: stable
+                  components: rustfmt
+            - name: Check formatting
+              run: |
+                  cargo fmt --all -- --check
+    clippy:
+        name: Clippy
+        runs-on: ubuntu-26.04
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@stable
+              with:
+                  profile: minimal
+                  toolchain: stable
+            - run: rustup component add clippy
+            - name: Install dependencies on Ubuntu
+              run: sudo apt-get update && sudo apt-get build-essential
+            - uses: Swatinem/rust-cache@82a92a6e8fbeee089604da2575dc567ae9ddeaab
+
+            - name: Setup Mold
+              uses: rui314/setup-mold@v1
+              with:
+                  mold-version: 2.32.0
+                  make-default: false
+
+            - uses: dtolnay/rust-toolchain@v1
+              with:
+                  toolchain: stable
+                  components: rustfmt
+            - name: Check formatting
+              run: |
+                  cargo fmt --all -- --check
