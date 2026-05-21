@@ -22,7 +22,18 @@ env:
 
 jobs:
     linux:
-        runs-on: ubuntu-26.04
+        name: linux (${{ matrix.target }})
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - os: ubuntu-26.04
+                      target: x86_64-unknown-linux-gnu
+                    - os: ubuntu-24.04-arm
+                      target: aarch64-unknown-linux-gnu
+                    - os: ubuntu-24.04-riscv
+                      target: riscv64gc-unknown-linux-gnu
 
         steps:
             - name: checkout repository
@@ -32,6 +43,7 @@ jobs:
               with:
                   profile: minimal
                   toolchain: ${{ env.RUST_VERSION }}
+                  target: ${{ matrix.target }}
             - name: Init cache
               uses: Swatinem/rust-cache@v2.9.1
             - name: Setup Mold
@@ -43,17 +55,17 @@ jobs:
                   sudo apt-get update
                   sudo apt-get install build-essential
             - name: Build
-              run: cargo build --release
+              run: cargo build --release --target=${{ matrix.target }}
             - name: Gzip
               run: |
                   mkdir buklo
-                  cp ./target/release/buklo buklo/
-                  tar -zcvf ./buklo-linux.tar.gz buklo
+                  cp ./target/${{ matrix.target }}/release/buklo buklo/
+                  tar -zcvf ./buklo-${{ matrix.target }}.tar.gz buklo
             - uses: actions/upload-artifact@v7
               with:
-                  name: buklo-linux
+                  name: buklo-${{ matrix.target }}
                   path: |
-                      ./buklo-linux.tar.gz
+                      ./buklo-${{ matrix.target }}.tar.gz
                   retention-days: 1
 
     publish:
@@ -89,4 +101,4 @@ jobs:
                    echo 'PRERELEASE=') >> $GITHUB_ENV
             - name: Publish release
               run: |
-                  gh release create $TAG_NAME $PRERELEASE --title "$TAG_NAME" --target $GITHUB_SHA buklo-linux/*
+                  gh release create $TAG_NAME $PRERELEASE --title "$TAG_NAME" --target $GITHUB_SHA buklo-*/*
