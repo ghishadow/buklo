@@ -26,7 +26,7 @@ jobs:
                       target: aarch64-pc-windows-msvc
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
               with:
                   fetch-depth: 0
             - name: Set artifact name
@@ -44,12 +44,11 @@ jobs:
                   target: ${{ matrix.target }}
 
             - name: Init cache
-              uses: Swatinem/rust-cache@82a92a6e8fbeee089604da2575dc567ae9ddeaab
+              uses: Swatinem/rust-cache@v2.9.1
 
             - name: Setup Mold
               uses: rui314/setup-mold@v1
               with:
-                  mold-version: 2.32.0
                   make-default: false
 
             - name: Build binary
@@ -75,7 +74,7 @@ jobs:
                   LICENSE.md README.md
                   ./target/${{ matrix.target }}/release/buklo.exe
             - name: Upload artifact
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v7
               with:
                   name: ${{ matrix.target }}
                   path: |
@@ -83,7 +82,7 @@ jobs:
                       *.tar.gz
             - name: Create release
               if: startsWith(github.ref, 'refs/tags/v')
-              uses: softprops/action-gh-release@v2
+              uses: softprops/action-gh-release@v3
               with:
                   draft: false
                   generate_release_notes: true
