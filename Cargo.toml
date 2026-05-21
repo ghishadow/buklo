@@ -13,23 +13,21 @@ edition = "2024"
 [badges]
 maintenance = { status = "actively-developed" }
 
-[lints.rust]
-unsafe_code = "forbid"
+
 
 [dependencies]
-argh = "0.1"
-ureq = { version = "2.12", default-features = false, features = [
+argh = "0.1.19"
+ureq = { version = "3.3.0", default-features = false, features = [
     "gzip",
     "json",
     "socks-proxy",
-    "native-certs",
     "native-tls",
 ] }
 update-informer = "1.3"
 owo-colors = "4.3"
 url = "2.5"
 tracing = "0.1"
-tokio = { version = "1", features = ["tracing", "macros", "rt-multi-thread"] }
+tokio = { version = "1.52.3", features = ["tracing", "macros", "rt-multi-thread"] }
 
 
 [profile.dev]

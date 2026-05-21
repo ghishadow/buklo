@@ -50,25 +50,48 @@ impl From<io::Error> for Error {
     }
 }
 
+impl From<ureq::http::Error> for Error {
+    fn from(source: ureq::http::Error) -> Self {
+        Error { source: source.into() }
+    }
+}
+
 pub async fn request(
     method: &str,
     url: &str,
     data: &[u8],
     print_headers: bool,
 ) -> Result<(), Error> {
-    let builder = ureq::builder();
-    let agent = builder.build();
-    let req = agent.request(method, url);
-    let response =
-        if method == "GET" && data.is_empty() { req.call()? } else { req.send_bytes(data)? };
+    let method = method
+        .parse::<ureq::http::Method>()
+        .map_err(|err| StringError(format!("invalid HTTP method {method:?}: {err}")))?;
+    let agent = ureq::Agent::new_with_defaults();
+    let response = if method == ureq::http::Method::GET && data.is_empty() {
+        let request = ureq::http::Request::builder()
+            .method(method)
+            .uri(url)
+            .body(())?;
+        agent.run(request)?
+    } else {
+        let request = ureq::http::Request::builder()
+            .method(method)
+            .uri(url)
+            .body(data)?;
+        agent.run(request)?
+    };
     if print_headers {
-        println!("{} {} {}", response.http_version(), response.status(), response.status_text());
-        response.headers_names().into_iter().for_each(|h| {
-            println!("{}: {}", h, response.header(&h).unwrap_or_default());
-        });
+        println!(
+            "{:?} {} {}",
+            response.version(),
+            response.status().as_u16(),
+            response.status().canonical_reason().unwrap_or_default()
+        );
+        for (name, value) in response.headers() {
+            println!("{}: {}", name, value.to_str().unwrap_or_default());
+        }
         println!();
     }
-    let mut reader = response.into_reader();
+    let mut reader = response.into_body().into_reader();
     io::copy(&mut reader, &mut io::stdout())?;
     Ok(())
 }

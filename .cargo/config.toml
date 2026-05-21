@@ -1,6 +1,5 @@
 [build]
 incremental = true
-profiler = true
 jobs = 6
 
 [alias]
