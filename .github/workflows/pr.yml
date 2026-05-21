@@ -14,6 +14,9 @@ jobs:
                 os: [ubuntu-26.04, windows-latest, macos-latest]
                 toolchain: [stable]
 
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
         runs-on: ${{ matrix.os }}
         steps:
             - uses: actions/checkout@v4

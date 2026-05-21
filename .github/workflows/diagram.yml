@@ -5,12 +5,12 @@ on:
         branches:
             - create_diagram
 jobs:
-    get_data:
-        runs-on: ubuntu-26.04
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            - name: Update diagram
-              uses: githubocto/repo-visualizer@main
-              with:
-                  excluded_paths: "ignore,.github"
+  get_data:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Update diagram
+        uses: githubocto/repo-visualizer@main
+        with:
+          excluded_paths: "ignore,.github"
