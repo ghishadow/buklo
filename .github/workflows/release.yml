@@ -56,11 +56,6 @@ jobs:
                   make-default: false
 
             - name: Build binary
-              uses: dtolnay/rust-toolchain@v1
-              with:
-                  toolchain: stable
-                  components: rustfmt
-            - name: Check formatting
               run: |
                   cargo build --release --target=${{ matrix.target }} --color=always --verbose
 
